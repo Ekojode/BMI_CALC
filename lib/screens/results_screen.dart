@@ -15,7 +15,13 @@ class ResultScreen extends StatelessWidget {
       appBar: AppBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Text(bmi), Text(remark)],
+        children: [
+          Text(bmi),
+          Text(
+            remark,
+            style: cardTextStyle,
+          )
+        ],
       ),
     );
   }
