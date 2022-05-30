@@ -7,9 +7,9 @@ class BmiCalc {
   BmiCalc({required this.height, required this.weight});
   double bmi = 0;
 
-  String calculateBmi() {
+  double calculateBmi() {
     bmi = weight / (pow(height / 100, 2));
-    return bmi.toStringAsFixed(1);
+    return bmi;
   }
 
   String getResult() {
@@ -18,7 +18,7 @@ class BmiCalc {
     } else if (bmi <= 18.5) {
       return "Under Weight";
     } else {
-      return "Normal Weight";
+      return "Normal ";
     }
   }
 

@@ -166,13 +166,14 @@ class _HomeScreenState extends State<HomeScreen> {
           child: ElevatedButton(
             onPressed: () {
               BmiCalc calc = BmiCalc(height: height, weight: weight);
-              print(calc.calculateBmi());
+              //    print(calc.calculateBmi());
               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ResultScreen(
                       bmi: calc.calculateBmi(),
                       remark: calc.getInterpretation(),
+                      interpretation: calc.getResult(),
                     ),
                   ));
             },
@@ -180,7 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: const Text(
               "CALCULATE",
               style: TextStyle(
-                color: whiteColor,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
                 fontSize: 28,
               ),
