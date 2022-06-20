@@ -30,14 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
       drawer: const Drawer(
         backgroundColor: accentColor,
       ),
-      appBar: AppBar(
+      /*  appBar: AppBar(
         title: const Text(
           "BMI CALCULATOR",
           style: TextStyle(fontWeight: FontWeight.bold, color: whiteColor),
         ),
         centerTitle: true,
         backgroundColor: mainolor,
-      ),
+      ),*/
       body: Column(
         children: [
           Container(

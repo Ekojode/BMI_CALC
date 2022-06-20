@@ -33,62 +33,83 @@ class ResultScreen extends StatelessWidget {
         MediaQuery.of(context).padding.top -
         AppBar().preferredSize.height;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(
-            "BMI CALCULATOR",
-            style: TextStyle(fontWeight: FontWeight.bold, color: whiteColor),
-          ),
-          centerTitle: true,
-          backgroundColor: mainolor,
+      appBar: AppBar(
+        title: const Text(
+          "BMI CALCULATOR",
+          style: TextStyle(fontWeight: FontWeight.bold, color: whiteColor),
         ),
-        body: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Text(
-              "   Your Result!",
+        centerTitle: true,
+        backgroundColor: mainolor,
+      ),
+      body: Column(
+        // mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "   Your Result!",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 40,
+              color: whiteColor,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          Container(
+            height: screenHeight * 0.55,
+            width: double.infinity,
+            margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              color: cardColor,
+            ),
+            child: Column(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  interpretation,
+                  style: interpretationStyle,
+                ),
+                const SizedBox(height: 8),
+                Text(bmi.toStringAsFixed(2), style: cardNumStyle),
+                const SizedBox(height: 8),
+                Text(
+                  "Normal BMI range:",
+                  style: TextStyle(color: Colors.blueGrey[50]),
+                ),
+                const Text(
+                  "18.5 - 25 kg/m2",
+                  style:
+                      TextStyle(fontWeight: FontWeight.bold, color: whiteColor),
+                ),
+                const SizedBox(
+                  height: 8,
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        color: accentColor,
+        child: SizedBox(
+          height: screenHeight * 0.0875,
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            style: ElevatedButton.styleFrom(primary: accentColor),
+            child: const Text(
+              "RECALCULATE",
               style: TextStyle(
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 40,
-                color: whiteColor,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            Container(
-              height: screenHeight * 0.55,
-              width: double.infinity,
-              margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: cardColor,
-              ),
-              child: Column(
-                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    interpretation,
-                    style: interpretationStyle,
-                  ),
-                  const SizedBox(height: 8),
-                  Text(bmi.toStringAsFixed(2), style: cardNumStyle),
-                  const SizedBox(height: 8),
-                  Text(
-                    "Normal BMI range:",
-                    style: TextStyle(color: Colors.blueGrey[50]),
-                  ),
-                  const Text(
-                    "18.5 - 25 kg/m2",
-                    style: TextStyle(
-                        fontWeight: FontWeight.bold, color: whiteColor),
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  )
-                ],
+                fontSize: 28,
               ),
             ),
-          ],
-        ));
+          ),
+        ),
+      ),
+    );
   }
 }
