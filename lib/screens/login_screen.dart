@@ -1,5 +1,7 @@
+import 'package:bmi_calculator/constraints/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -19,40 +21,95 @@ class _LoginScreenState extends State<LoginScreen> {
         AppBar().preferredSize.height;
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      //backgroundColor: Colors.white,
+
       appBar: AppBar(
-        title: const Text("Login Page"),
+        backgroundColor: mainolor,
+        //  title: const Text("Login Page"),
       ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: screenHeight * 0.35,
-                child: Container(
-                  //     color: Colors.white,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      //   border: Border.all(width: 2),
-                      color: Colors.white),
-                  //  margin: const EdgeInsets.all(10),
-                  child: Image.network(
-                    "https://thumbs.dreamstime.com/b/account-login-password-key-computer-man-near-vector-male-character-design-concept-landing-page-web-poster-banner-184009994.jpg",
-                    fit: BoxFit.contain,
+              Center(
+                child: SizedBox(
+                  height: screenHeight * 0.24,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Image.network(
+                        "https://thumbs.dreamstime.com/b/account-login-password-key-computer-man-near-vector-male-character-design-concept-landing-page-web-poster-banner-184009994.jpg"),
                   ),
                 ),
               ),
+              SizedBox(height: screenHeight * 0.01),
+              const Text(
+                "Log in",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 30,
+                    color: whiteColor),
+              ),
+              SizedBox(height: screenHeight * 0.01),
+              Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      height: screenHeight * 0.07,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          width: 1,
+                          color: whiteColor,
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        color: cardColor,
+                      ),
+                      child: const Icon(
+                        FontAwesomeIcons.google,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Container(
+                      height: screenHeight * 0.07,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          width: 1,
+                          color: whiteColor,
+                        ),
+                        color: cardColor,
+                      ),
+                      child: const Icon(
+                        FontAwesomeIcons.apple,
+                        color: whiteColor,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              SizedBox(height: screenHeight * 0.01),
               Form(
                 key: _formKey,
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("Login"),
+                    const Text(
+                      "Email",
+                      style: TextStyle(
+                          color: whiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    SizedBox(height: screenHeight * 0.01),
                     Row(
                       children: [
                         const Icon(
                           Icons.email,
-                          color: Colors.grey,
+                          color: whiteColor,
                         ),
                         Expanded(
                           child: TextFormField(
@@ -67,15 +124,31 @@ class _LoginScreenState extends State<LoginScreen> {
                               }
                               return null;
                             },
-                            decoration:
-                                const InputDecoration(hintText: "Email"),
+                            style: const TextStyle(color: whiteColor),
+                            decoration: const InputDecoration(
+                              hintText: "Email",
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.purple)),
+                            ),
                           ),
-                        ),
+                        )
                       ],
                     ),
+                    SizedBox(height: screenHeight * 0.01),
+                    const Text(
+                      "Password",
+                      style: TextStyle(
+                          color: whiteColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                    ),
+                    SizedBox(height: screenHeight * 0.01),
                     Row(
                       children: [
-                        const Icon(Icons.lock),
+                        const Icon(
+                          Icons.lock,
+                          color: whiteColor,
+                        ),
                         Expanded(
                           child: TextFormField(
                             obscureText: _isObscure,
@@ -91,7 +164,10 @@ class _LoginScreenState extends State<LoginScreen> {
                               }
                               return null;
                             },
+                            style: const TextStyle(color: whiteColor),
                             decoration: InputDecoration(
+                              focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.purple)),
                               hintText: "Password",
                               suffixIcon: IconButton(
                                 onPressed: () {
@@ -99,9 +175,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                     _isObscure = !_isObscure;
                                   });
                                 },
-                                icon: Icon(_isObscure
-                                    ? Icons.visibility
-                                    : Icons.visibility_off),
+                                icon: Icon(
+                                  _isObscure
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: whiteColor,
+                                ),
                               ),
                             ),
                           ),
@@ -111,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const SizedBox(height: 10),
                     FlutterPwValidator(
                         width: 400,
-                        height: 150,
+                        height: screenHeight * 0.22,
                         minLength: 8,
                         onSuccess: () {
                           // print("MATCHED");
@@ -126,13 +205,27 @@ class _LoginScreenState extends State<LoginScreen> {
                   ],
                 ),
               ),
-              const SizedBox(height: 5),
-              ElevatedButton(
-                  onPressed: () {},
-                  child: const Text(
-                    "Login",
-                    textAlign: TextAlign.center,
-                  ))
+              SizedBox(height: screenHeight * 0.01),
+              InkWell(
+                onTap: (() {}),
+                child: Container(
+                  height: screenHeight * 0.085,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: accentColor),
+                  child: const Center(
+                    child: Text(
+                      "Login",
+                      style: TextStyle(
+                        color: whiteColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
