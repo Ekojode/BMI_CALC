@@ -1,10 +1,13 @@
 import 'package:bmi_calculator/constraints/bmi_calculator.dart';
 import 'package:bmi_calculator/constraints/constants.dart';
 import 'package:bmi_calculator/screens/results_screen.dart';
+import 'package:bmi_calculator/widgets/app_drawer.dart';
 import 'package:bmi_calculator/widgets/parameter_selector.dart.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../providers/user_providers.dart';
 import '../widgets/gender_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -29,17 +32,15 @@ class _HomeScreenState extends State<HomeScreen> {
         AppBar().preferredSize.height;
 
     return Scaffold(
-      drawer: const Drawer(
-        backgroundColor: accentColor,
-      ),
-      /*  appBar: AppBar(
+      drawer: const AppDrawe(),
+      appBar: AppBar(
         title: const Text(
           "BMI CALCULATOR",
           style: TextStyle(fontWeight: FontWeight.bold, color: whiteColor),
         ),
         centerTitle: true,
         backgroundColor: mainolor,
-      ),*/
+      ),
       body: Column(
         children: [
           Container(

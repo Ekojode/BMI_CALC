@@ -3,6 +3,8 @@ import 'package:bmi_calculator/constraints/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
+import '../providers/user_providers.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -15,6 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
   final _passwordControl = TextEditingController();
+  final _emailControl = TextEditingController();
+  var userMale = User(userEmail: 'gg');
 
   void login() {
     if (_formKey.currentState!.validate()) {
@@ -24,6 +28,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = Provider.of<UserMail>(context);
     double screenHeight = MediaQuery.of(context).size.height -
         MediaQuery.of(context).padding.top -
         AppBar().preferredSize.height;
@@ -132,6 +137,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               }
                               return null;
                             },
+                            onSaved: (value) {
+                              userMale.userEmail = value!;
+                              userMale.userEmail = _emailControl.text;
+                            },
+                            controller: _emailControl,
                             style: const TextStyle(color: whiteColor),
                             decoration: const InputDecoration(
                               hintText: "Email",
@@ -214,7 +224,14 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: screenHeight * 0.01),
               InkWell(
-                onTap: login,
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    _formKey.currentState!.save();
+                    Navigator.of(context)
+                        .pushReplacementNamed(HomeScreen.routeName);
+                    user.newUser(userMale);
+                  }
+                },
                 child: Container(
                   height: screenHeight * 0.085,
                   width: double.infinity,
