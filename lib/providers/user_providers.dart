@@ -10,7 +10,7 @@ class UserMail with ChangeNotifier {
   List<User> user = [];
 
   void newUser(User mail) {
-    user.add(mail);
+    user.insert(0, mail);
     notifyListeners();
   }
 }

@@ -5,9 +5,7 @@ import 'package:bmi_calculator/widgets/app_drawer.dart';
 import 'package:bmi_calculator/widgets/parameter_selector.dart.dart';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
-import '../providers/user_providers.dart';
 import '../widgets/gender_widget.dart';
 
 class HomeScreen extends StatefulWidget {
