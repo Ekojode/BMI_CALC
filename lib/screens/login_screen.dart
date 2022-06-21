@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/Screens/home_screen.dart';
 import 'package:bmi_calculator/constraints/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_pw_validator/flutter_pw_validator.dart';
@@ -14,6 +15,13 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   bool _isObscure = true;
   final _passwordControl = TextEditingController();
+
+  void login() {
+    if (_formKey.currentState!.validate()) {
+      Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height -
@@ -127,6 +135,8 @@ class _LoginScreenState extends State<LoginScreen> {
                             style: const TextStyle(color: whiteColor),
                             decoration: const InputDecoration(
                               hintText: "Email",
+                              enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white)),
                               focusedBorder: OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.purple)),
                             ),
@@ -158,14 +168,16 @@ class _LoginScreenState extends State<LoginScreen> {
                                 return "Please enter a password";
                               }
                               if (!RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
                                   .hasMatch(value)) {
-                                return "Please enter a valid email!";
+                                return "Please enter a valid password!";
                               }
                               return null;
                             },
                             style: const TextStyle(color: whiteColor),
                             decoration: InputDecoration(
+                              enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(color: Colors.white)),
                               focusedBorder: const OutlineInputBorder(
                                   borderSide: BorderSide(color: Colors.purple)),
                               hintText: "Password",
@@ -192,12 +204,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 400,
                         height: screenHeight * 0.22,
                         minLength: 8,
-                        onSuccess: () {
-                          // print("MATCHED");
-                          ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                  content: Text("Password is matched")));
-                        },
+                        onSuccess: () {},
                         uppercaseCharCount: 1,
                         numericCharCount: 1,
                         specialCharCount: 1,
@@ -207,7 +214,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               SizedBox(height: screenHeight * 0.01),
               InkWell(
-                onTap: (() {}),
+                onTap: login,
                 child: Container(
                   height: screenHeight * 0.085,
                   width: double.infinity,

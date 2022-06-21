@@ -10,6 +10,8 @@ import '../widgets/gender_widget.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
+  static const routeName = "/Homescreen";
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
